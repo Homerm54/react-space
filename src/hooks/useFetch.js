@@ -54,7 +54,13 @@ export default function useFetch(url) {
 
   useEffect(() => {
 
-    // console.log(`Fetching with URL: ${url}`);
+    
+    setFetchedData({
+      data: null,
+      fetching: true,
+      error: null,
+    });
+    
 
     fetch(url)
       .then(response => response.json())
@@ -80,13 +86,6 @@ export default function useFetch(url) {
           fetching: false,
         }))
       })
-
-
-    setFetchedData({
-      data: null,
-      fetching: true,
-      error: null,
-    });
 
   }, [url]);
 

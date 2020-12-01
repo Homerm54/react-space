@@ -4,10 +4,15 @@ import { setError } from 'context/actions';
 
 import cacheImage from './cacheImage';
 
+import Loading from 'components/Loading';
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 // import CircularProgress from '@material-ui/core/CircularProgress';
-import Loading from 'components/Loading';
+
+import SpaceImage from 'assets/space-image.jpg';
+
 
 
 
@@ -43,7 +48,7 @@ export default function Image({ data }) {
     setLoading(true); // In case data has changed, reload
 
     if (!data.fetching && !data.error) { // Cache Image only if no error
-      cacheImage(data.data?.url || 'No URL Provided')
+      cacheImage(data.data?.url || SpaceImage)
         .then(() => {
           if (isMounted.current) {
             setLoading(false);

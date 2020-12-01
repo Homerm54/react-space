@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { context } from "context";
 import { setError } from 'context/actions';
@@ -19,29 +19,28 @@ export default function App() {
 
   const data = useFecth(createAPODURL(state.date));
   
-  
-  useEffect(() => {
-    // Error Handling here.
+  useEffect(() => {// Error Handling 
 
-    if (data?.error) { 
+    if (data.error) { 
 
       dispatch(setError({
         error: data.error,
         where: 'Fetch',
       }));
-
-    } else if (data?.code) {
-
-      dispatch(setError({
-        error: {
-          message: data.msg
-        },
-        where: 'Fetch',
-      }));
-
+      
+    } else if (data.data?.code) {
+      
       data.error = {
         message: data.msg
       }
+
+      dispatch(setError({
+        where: 'Fetch',
+        error: {
+          message: data.msg
+        },
+      }));
+
     }
   }, [data, dispatch]);
 
