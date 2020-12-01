@@ -19,6 +19,8 @@ const API_KEY = 'VZst7lpwjTH73oNv6qjXywPqMpJ7himxgVpLgceV';
 
 export default function createAPODURL(date, hd = false){
 
+  if(!date) throw new Error('A Date Object must be provided');
+
   const stringDate = stringifyDate(date);
 
   return (

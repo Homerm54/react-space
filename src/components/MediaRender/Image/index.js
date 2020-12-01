@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { context } from 'context';
 import { setError } from 'context/actions';
 
@@ -43,14 +43,13 @@ export default function Image({ data }) {
     setLoading(true); // In case data has changed, reload
 
     if (!data.fetching && !data.error) { // Cache Image only if no error
-      cacheImage(data.data.url)
+      cacheImage(data.data?.url || 'No URL Provided')
         .then(() => {
           if (isMounted.current) {
             setLoading(false);
           }
         })
         .catch(e => {
-
           dispatch(setError({
             where: 'Image',
           }));

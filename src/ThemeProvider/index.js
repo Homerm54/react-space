@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import NunitoFont from 'assets/font/Nunito-Regular.ttf';
 
@@ -91,7 +91,7 @@ export default function ThemeProviderHOC({ children }) {
 
   return (
     <ThemeProvider theme={theme}>
-      { children}
+      { children }
     </ThemeProvider>
   )
 }

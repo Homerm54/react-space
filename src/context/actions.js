@@ -1,5 +1,6 @@
 import types from "./types";
 
+
 export function setDate(date){
 
   return {
@@ -50,7 +51,7 @@ export function setError(error){
   switch(error.where){
     case 'Fetch':
       identError = {
-        message: error.error.message,
+        message: error.error?.message || 'Error reaching NASA API',
         fatal: true
       }
       break;

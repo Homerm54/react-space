@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { context } from 'context';
 import { clearError } from 'context/actions';
 
-// import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
-// import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+// import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -22,13 +22,14 @@ export default function ErrorMessage() {
   function handleClose() {
 
     // console.log('Error Message Closed');
-    dispatch(clearError());
+    dispatch(clearError()); // Should handle the error some way here
   }
 
-  // function handleReload() {
+  function handleReload() {
 
-  //   console.log('Reload fired!');
-  // }
+    // console.log('Reload fired!');
+    document.location.reload();
+  }
 
 
   return (
@@ -36,12 +37,14 @@ export default function ErrorMessage() {
       <Alert
         severity='error'
         onClose={handleClose}
-        // action={ // Render this conditionally - if fatal error
-        //   state.error.fatal &&
-        //   <Button color="inherit" size="small" onClick={handleReload}>
-        //     Reload
-        //   </Button>
-        // }
+        action={ // Render this conditionally - if fatal error
+          state.error.fatal?
+          <Button color="inherit" size="small" onClick={handleReload}>
+            Reload
+          </Button>
+          :
+          undefined // Show the X to close the Alert
+        }
       >
         Oops, {state.error.message}
     </Alert>
