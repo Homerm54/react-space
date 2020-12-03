@@ -33,29 +33,25 @@ const useStyles = makeStyles(theme => (
 
 export default function Controls() {
 
-  // const [today, setDate] = useState(new Date());
+  const classes = useStyles();
 
   const { state, dispatch } = useContext(context);
-  const today = state.date;
+  const today = state.date; 
+  // This input is the only place where the user can see the current date
 
-  const classes = useStyles();
-  // console.log(today);
 
   function handleDayBefore() {
-
     dispatch(goDayBefore(today));
   }
 
-  function dayAfter() {
 
+  function dayAfter() {
     dispatch(goDayAfter(today));
   }
 
-  function handleNewDate({ target }){
 
-    const newDate = new Date(target.value);
-    // console.log(newDate);
-    
+  function handleNewDate({ target }){
+    const newDate = new Date(target.value);    
     dispatch(setDate(newDate));
   }
 
@@ -67,9 +63,9 @@ export default function Controls() {
         <Button onClick={handleDayBefore} className={classes.button}>
           <Before /> Past Day
         </Button>
-        <Button>
+        <Button component='div'>
           <TextField
-            name='datePicker'
+            name='date picker'
             value={stringifyDate(today)}
             onChange={handleNewDate}
             type='date'

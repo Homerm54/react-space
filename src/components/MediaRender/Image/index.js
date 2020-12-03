@@ -4,8 +4,8 @@ import { setError } from 'context/actions';
 
 import cacheImage from './cacheImage';
 
+import PropTypes from 'prop-types';
 import Loading from 'components/Loading';
-
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -78,4 +78,15 @@ export default function Image({ data }) {
       }
     </Container>
   )
+}
+
+
+Image.propTypes = {
+  data: PropTypes.shape({
+    data: PropTypes.shape({
+      url: PropTypes.string
+    }),
+    fetching: PropTypes.bool,
+    error: PropTypes.any,
+  })
 }
